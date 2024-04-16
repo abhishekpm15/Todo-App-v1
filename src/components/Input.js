@@ -36,7 +36,7 @@ const Input = ({ todos, setTodos, updateValue, setUpdateValue }) => {
       ></input>
       {updateValue && item !== '' ? (
         <div
-          className='text-base w-40 sm:w-36 flex items-center justify-center  bg-light-green-400 rounded-l-lg cursor-pointer ring-2 ring-black/60 '
+          className='text-base w-40 sm:w-36 flex items-center justify-center text-white bg-light-green-400 rounded-l-lg cursor-pointer ring-2 ring-black/60 '
           onClick={UpdateItem}
         >
           Update Item
