@@ -3,7 +3,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Typography,
 } from '@material-tailwind/react'
 import { MdDeleteOutline } from "react-icons/md";
 import { IoMdCreate } from "react-icons/io";
