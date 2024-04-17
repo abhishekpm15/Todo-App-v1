@@ -21,6 +21,9 @@ const Input = () => {
         onChange={e => {
           setItem(e.target.value)
         }}
+        onKeyDown={(e)=>{if(e.key === 'Enter') {
+          updateId && item !== '' ? UpdateItem() : AddItem()
+        }}}
       ></input>
       {updateId && item !== '' ? (
         <div
