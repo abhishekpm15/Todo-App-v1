@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import React, { useContext, useEffect } from 'react'
+import { TodoContextProvider } from '../context/TodoContext'
 
-const Input = ({ todos, setTodos, updateValue, setUpdateValue }) => {
-  const [item, setItem] = useState('')
+const Input = () => {
+  const {item, setItem, todos, UpdateItem, AddItem, updateId} = useContext(TodoContextProvider)
 
   useEffect(() => {
-    if (updateValue) {
-      const value = todos.find(todo => todo.id === updateValue)?.todo || ''
+    if (updateId) {
+      const value = todos.find(todo => todo.id === updateId)?.todo || ''
       setItem(value)
     }
-  }, [updateValue, todos])
-
-  const AddItem = () => {
-    if (item.length > 0) setTodos([...todos, { id: uuidv4(), todo: item }])
-    setItem('')
-  }
-
-  const UpdateItem = () =>{
-    const updatedTodo = todos.map((todo)=>todo.id === updateValue ? {id:todo.id, todo:item} : todo )
-    setTodos(updatedTodo)
-    setItem('')
-    setUpdateValue(null)
-  }
+  }, [updateId, todos, setItem])
 
   return (
     <div className='sm:w-[500px] w-[350px] flex justify-center ring-2 ring-black'>
@@ -34,9 +22,9 @@ const Input = ({ todos, setTodos, updateValue, setUpdateValue }) => {
           setItem(e.target.value)
         }}
       ></input>
-      {updateValue && item !== '' ? (
+      {updateId && item !== '' ? (
         <div
-          className='text-base w-40 sm:w-36 flex items-center justify-center text-white bg-light-green-400 rounded-l-lg cursor-pointer ring-2 ring-black/60 '
+          className='text-base w-40 sm:w-36 flex items-center justify-center text-white bg-green-600 rounded-l-lg cursor-pointer ring-2 ring-black/60 '
           onClick={UpdateItem}
         >
           Update Item
