@@ -12,8 +12,8 @@ const Todo = ({data}) => {
 const { UpdateTodo, DeleteTodo} = useContext(TodoContextProvider)
   return (
     <Card className='mt-6 w-80 sm:w-96 shadow-2xl ring-2  ring-black shadow-black/50 flex mx-auto'>
+      <div className='text-xs absolute top-7 left-2 bg-deep-purple-200 text-white p-1 rounded-b-lg'>Time : {data.time.match(/\b\d{2}:\d{2}\b/)} </div>
       <div className='text-xs absolute left-2 bg-deep-purple-200 p-1 text-white rounded-t-lg mt-2'>{data.time.match(/\b[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{4}\b/)}</div>
-      <div className='text-xs absolute top-7 left-2 bg-deep-purple-200 text-white p-1 rounded-b-lg'>{data.time.match(/\b\d{2}:\d{2}\b/)} {' '} {parseInt(data.time.match(/\b\d{2}:\d{2}\b/)[0]) >= 12 ? 'PM' : 'AM'}</div>
       <div className='text-xs'></div>
       <CardBody>
         <div className='mt-10 sm:mt-8  text-xl text-black break-words'>

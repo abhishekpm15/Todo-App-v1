@@ -3,21 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 
 const TodoContextProvider = createContext();
 
-const TodoContext = ({ children }) => {
-  const [todos, setTodos] = useState([]);
-  const [item, setItem] = useState("");
-  const [updateId, setUpdateId] = useState(null);
-
-  useEffect(()=>{
-    const localTodos = localStorage.getItem('todos')
+const getLocalStorage = () =>{
+    let localTodos = localStorage.getItem('todos')
     console.log(localTodos)
     if(localTodos){
-      setTodos(JSON.parse(localTodos))
+      return (JSON.parse(localTodos))
     }
     else{
-      setTodos(([]))
+      return []
     }
-  },[])
+}
+
+const TodoContext = ({ children }) => {
+  const [todos, setTodos] = useState(getLocalStorage);
+  const [item, setItem] = useState("");
+  const [updateId, setUpdateId] = useState(null);
 
   useEffect(()=>{
     localStorage.setItem("todos",JSON.stringify(todos));
@@ -26,7 +26,7 @@ const TodoContext = ({ children }) => {
 
   const AddItem = () => {
     if (item.length > 0) {
-      setTodos([...todos, { id: uuidv4(), todo: item, time: Date() }]);
+      setTodos([...todos, { id: uuidv4(), todo: item, time: Date().toLocaleString() }]);
     }
     setItem("");
   };
